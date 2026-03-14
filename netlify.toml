@@ -1,0 +1,42 @@
+[build]
+  # Comando que se ejecuta antes de cada despliegue
+  command = "node build.js"
+  # Carpeta que Netlify publica (raíz del proyecto)
+  publish = "."
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Redireccionamientos amigables: /listas → /listas/
+[[redirects]]
+  from = "/listas"
+  to   = "/listas/"
+  status = 301
+
+[[redirects]]
+  from = "/listas/tv"
+  to   = "/listas/tv/"
+  status = 301
+
+[[redirects]]
+  from = "/listas/series"
+  to   = "/listas/series/"
+  status = 301
+
+[[redirects]]
+  from = "/listas/movies"
+  to   = "/listas/movies/"
+  status = 301
+
+# Headers de seguridad y caché
+[[headers]]
+  for = "/*.m3u"
+  [headers.values]
+    Content-Type = "application/x-mpegurl"
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/*.m3u8"
+  [headers.values]
+    Content-Type = "application/x-mpegurl"
+    Cache-Control = "no-cache"
